@@ -7,21 +7,24 @@
 
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        arr = []
-        if not root:
-            return arr
-        queue = [root]
+        
+        res = []
         def bfs(queue):
             if not queue:
                 return
+            res.append(queue[-1].val)
             traverse = []
             for node in queue:
                 if node.left:
                     traverse.append(node.left)
                 if node.right:
                     traverse.append(node.right)
-            arr.append(queue.pop().val)
             bfs(traverse)
-        bfs(queue)
-        return arr
         
+        if not root:
+            return res
+        
+        bfs([root])
+        return res
+
+            
