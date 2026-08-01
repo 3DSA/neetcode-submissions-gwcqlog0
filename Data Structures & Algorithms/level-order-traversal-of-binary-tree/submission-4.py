@@ -7,10 +7,10 @@
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        arr = []
+        # to build the nodes for level order, its thorugh bfs, we can utilize it
         if not root:
             return []
-        queue = [root]
+        res = []
         def bfs(queue):
             if not queue:
                 return
@@ -19,12 +19,11 @@ class Solution:
             for node in queue:
                 vals.append(node.val)
                 if node.left:
-                    traverse.append(node.left)
+                    traverse.append(node.left) 
                 if node.right:
                     traverse.append(node.right)
-            arr.append(vals)
+            res.append(vals)
             bfs(traverse)
-        bfs(queue)
-        return arr
-
         
+        bfs([root])
+        return res
